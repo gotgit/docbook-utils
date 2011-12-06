@@ -1,0 +1,16 @@
+<?xml version="1.0"  encoding="gb2312"?>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN"
+     "http://docbook.org/xml/4.2/docbookx.dtd" >
+<article id="gb2312-xml">
+<articleinfo>
+  <title>Hello World!</title>
+  <author><firstname>名</firstname><surname>姓</surname></author>
+</articleinfo>
+<!-- 这里是注释 -->
+
+<sect1><title>Hello World!</title>
+  <para>
+  Hello world! 这是我的第一个 DocBook 文档。
+  </para>
+</sect1>
+</article>

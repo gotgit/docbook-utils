@@ -1,0 +1,10 @@
+OVERRIDE YES
+SGMLDECL "dtd/docbook-4.5/docbook.dcl"
+DTDDECL  "-//OASIS//DTD DocBook XML V4.5CR1//EN"   "decl/xml.dcl"
+DTDDECL  "-//OASIS//DTD DocBook XML V4.2//EN"      "decl/xml.dcl"
+DTDDECL  "-//OASIS//DTD DocBook XML V3.1//EN"      "decl/xml.dcl"
+
+CATALOG "entities/catalog.sgml"
+CATALOG "stylesheet/dsssl/catalog.sgml"
+CATALOG "dtd/catalog.sgml"
+CATALOG "/opt/docbook/tools/xml/custom/website/catalog"

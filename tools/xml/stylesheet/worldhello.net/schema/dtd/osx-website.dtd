@@ -1,0 +1,37 @@
+<!--
+
+    <!DOCTYPE webpage PUBLIC "-//worldhello.net/DTD Website V2.6-Based Extension//EN"
+              "http://www.worldhello.net/docbook/schema/current/dtd/osx-website.dtd">
+
+-->
+
+<!--ENTITY % local.author.attrib "url CDATA #IMPLIED">
+<!ENTITY % local.editor.attrib "url CDATA #IMPLIED">
+<!ENTITY % local.divcomponent.mix "|bookreview">
+<!ENTITY % local.para.char.mix "|google">
+<!ENTITY % local.title.char.mix "|google">
+<!ENTITY % local.link.attrib "title CDATA #IMPLIED">
+<!ENTITY % local.olink.attrib "title CDATA #IMPLIED">
+<!ENTITY % local.ulink.attrib "title CDATA #IMPLIED"-->
+
+<!ENTITY % orig-website PUBLIC "-//Norman Walsh//DTD Website V2.6//EN"
+    "http://docbook.sourceforge.net/release/website/current/schema/dtd/website-full.dtd"
+>
+%orig-website;
+
+
+<!--ELEMENT bookreview (date, title, subtitle?, (author|editor|authorgroup)?, publisher?, year?, para*)>
+<!ATTLIST bookreview
+          id  ID    #IMPLIED
+          url CDATA #IMPLIED
+          linkdescr CDATA #IMPLIED
+>
+
+<!ELEMENT publisher ANY-->
+
+
+<!ELEMENT google ANY>
+<!ATTLIST google
+          mode CDATA #IMPLIED
+          query CDATA #IMPLIED
+>

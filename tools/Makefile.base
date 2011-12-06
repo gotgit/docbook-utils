@@ -1,0 +1,408 @@
+############################################################
+# Customizable variables
+############################################################
+
+# TOOLS_DIR is the place where Makefile.base and other scripts present.
+TOOLS_DIR ?= /opt/docbook/tools
+
+# DOCUMENT_ROOT is the prefix of file location.
+DOCUMENT_ROOT ?= 
+
+# XML_SRCDIR defines the place where XMLs present.
+XML_SRCDIR ?= $(NAME)
+
+# MM_SRC is FreeMind .mm filename
+MM_SRC ?=
+
+# XML_INDEX_NAME defines the main XML index page without extension.
+XML_INDEX_NAME ?= index
+
+# RENDER_DIR defines where rendered html, rtf, pdf present.
+RENDER_DIR ?= $(NAME)
+
+# OUTNAME defines output HTML(no chunk), RTF, PDF, Archive(*.tar.bz2) base file name without extension.
+OUTNAME ?= $(NAME)
+
+# Whether or not contain images/
+IMAGES ?= $(if $(shell ls images/ 2>/dev/null), images/*,)
+
+# $(INSTALL_DIR)/$(NAME) defines where htmls, pdf, tar.bz2 installed.
+INSTALL_DIR ?= /usr/share/doc/OVERRIDE_ME_WITH_SOMETHING_SUITABLE
+
+# NAME defines subdir of INSTALLed Target
+NAME ?= $(notdir $(shell pwd))
+
+# RENDER_OTHERS and INSTALL_OTHERS are scripts copy other necessary files to target dir.
+RENDER_OTHERS ?=
+INSTALL_OTHERS ?=
+
+# where or not create version.xml. if set to no, generate version.xml
+CREATE_VERSION_SOURCE ?= yes
+
+XSLTPROC_PARAMS ?= 
+
+############################################################
+# Base-vars defination
+############################################################
+
+# Paths which you may wish to customize:
+XSLTPROC = xsltproc --nonet --timing
+XMLLINT = xmllint
+INSTALL_DATA = install -m 644
+INSTALL_IMG1 = tar --exclude=CVS --exclude=.svn -vc
+INSTALL_IMG2 = tar -x -C
+MKDIR = install -d
+LYNX=lynx -dump -base -dont_wrap_pre -nolist -display_charset=utf-8 -assume_charset=utf-8 -assume_local_charset=utf-8 -assume_unrec_charset=utf-8
+OPENJADE=openjade
+XML_DECL=$(TOOLS_DIR)/sgml/decl/xml.dcl
+
+# use HTML Tidy to pretty-print HTML? 1=Yes 0=No
+USETIDY=0
+# specifies how to call tidy
+TIDY=tidy
+# specifies options to feed to tidy
+TIDYOPTS=-iq -latin1 -mn
+
+# You should not normally need to edit anything below here.
+SHELL = /bin/sh
+
+HTML_CHUNK_DIR ?= $(RENDER_DIR)/html-chunk
+# In the HTML chunk build, index.html is created last, so serves as an 
+# acceptable timestamp file for the entire multi-file output.
+ARCH_CMD = tar --exclude=CVS --exclude=.svn -jcvf
+ARCH_EXT = .tar.bz2
+
+HTML_ARCH_BASENAME = $(OUTNAME)-html
+HTML_CHUNK_ARCH_BASENAME = $(OUTNAME)-html-chunk
+CHM_ARCH_BASENAME = $(OUTNAME)-chm
+PDF_ARCH_BASENAME = $(OUTNAME)-pdf
+RTF_ARCH_BASENAME = $(OUTNAME)-rtf
+XML_ARCH_BASENAME = $(OUTNAME)-xml
+TXT_ARCH_BASENAME = $(OUTNAME)-txt
+
+HTML_TARGET = $(RENDER_DIR)/$(OUTNAME).htm
+HTML_CHUNK_TARGET = $(HTML_CHUNK_DIR)/index.html
+CHM_TARGET = $(RENDER_DIR)/$(OUTNAME).chm
+PDF_TARGET = $(RENDER_DIR)/$(OUTNAME).pdf
+PS_TARGET = $(RENDER_DIR)/$(OUTNAME).ps
+FO_TARGET = $(RENDER_DIR)/$(OUTNAME).fo
+RTF_TARGET = $(RENDER_DIR)/$(OUTNAME).rtf
+TXT_TARGET = $(RENDER_DIR)/$(OUTNAME).txt
+MM_TARGET0 = $(RENDER_DIR)/$(MM_SRC)
+MM_TARGET1 = $(RENDER_DIR)/$(MM_SRC).htm
+MM_TARGET2 = $(RENDER_DIR)/$(MM_SRC).s.htm
+
+HTML_ARCH_TARGET = $(RENDER_DIR)/$(HTML_ARCH_BASENAME)$(ARCH_EXT)
+HTML_CHUNK_ARCH_TARGET = $(RENDER_DIR)/$(HTML_CHUNK_ARCH_BASENAME)$(ARCH_EXT)
+CHM_ARCH_TARGET = $(RENDER_DIR)/$(CHM_ARCH_BASENAME)$(ARCH_EXT)
+PDF_ARCH_TARGET = $(RENDER_DIR)/$(PDF_ARCH_BASENAME)$(ARCH_EXT)
+RTF_ARCH_TARGET = $(RENDER_DIR)/$(RTF_ARCH_BASENAME)$(ARCH_EXT)
+XML_ARCH_TARGET = $(RENDER_DIR)/$(XML_ARCH_BASENAME)$(ARCH_EXT)
+TXT_ARCH_TARGET = $(RENDER_DIR)/$(TXT_ARCH_BASENAME)$(ARCH_EXT)
+
+ifeq ($(suffix $(XML_INDEX_NAME)),.xml)
+XML_SOURCE := $(XML_SRCDIR)/$(XML_INDEX_NAME)
+else
+XML_SOURCE := $(XML_SRCDIR)/$(XML_INDEX_NAME).xml
+endif
+
+VERSION_SOURCE = $(XML_SRCDIR)/version.xml
+
+ifeq ($(CREATE_VERSION_SOURCE),no)
+VERSION_SOURCE_VALID =
+else
+VERSION_SOURCE_VALID = $(VERSION_SOURCE)
+endif
+
+ALL_SOURCE := $(wildcard $(XML_SRCDIR)/*.xml)
+ALL_SOURCE := $(filter-out $(VERSION_SOURCE),$(ALL_SOURCE))
+INSTALL_SUBDIR = $(INSTALL_DIR)/$(NAME)
+
+ifdef XML_CATALOG_FILES
+ENSURE_XSL = 
+XML_CATALOG_DEFINE = XML_CATALOG_FILES=$(XML_CATALOG_FILES)
+else
+XML_CATALOG_DEFINE = XML_CATALOG_FILES=$(TOOLS_DIR)/xml/catalog.xml
+endif
+
+ifndef SGML_CATALOG_FILES
+SGML_CATALOG_FILES=$(TOOLS_DIR)/sgml/catalog.sgml
+endif
+
+DOCBOOK_XSL_ROOT ?= http://www.worldhello.net/docbook/xsl/current
+STYLE_CHUNK    = $(DOCBOOK_XSL_ROOT)/html/chunk.xsl
+STYLE_ONECHUNK = $(DOCBOOK_XSL_ROOT)/html/onechunk.xsl
+STYLE_HTMLHELP = $(DOCBOOK_XSL_ROOT)/htmlhelp/htmlhelp.xsl
+STYLE_FO       = $(DOCBOOK_XSL_ROOT)/fo/docbook.xsl
+STYLE_MM2HTML1 = $(TOOLS_DIR)/freemind/xsl/freemind2html.xsl
+STYLE_MM2HTML2 = $(TOOLS_DIR)/freemind/xsl/mm2html.xsl
+
+IFIMAGES = if test -n "$(IMAGES)"; then
+ENDIF = ; fi
+
+# Customization hooks for xsltproc options
+HTML_XSLTPROC_OPTS = 
+FO_XSLTPROC_OPTS =
+# FO example: --stringparam page.height 9in --stringparam page.width 6.4in
+
+# Uncomment the following line if you'd like to print on A4 paper
+# FO_XSLTPROC_OPTS = --stringparam paper.type A4
+
+# Override in locale-specific Makefile to localize the word in the 
+# auto-generated version file.
+L10N_REVISION = Revision
+
+############################################################
+# Rules defination
+############################################################
+
+ifdef XML_INDEX_NAME
+IGNORE_HTML_MAKE ?= no
+IGNORE_HTML-CHUNK_MAKE ?= no
+IGNORE_CHM_MAKE ?= no
+IGNORE_PDF_MAKE ?= no
+IGNORE_RTF_MAKE ?= no
+IGNORE_TXT_MAKE ?= no
+IGNORE_XML_MAKE ?= no
+else
+IGNORE_HTML_MAKE := yes
+IGNORE_HTML-CHUNK_MAKE := yes
+IGNORE_CHM_MAKE := yes
+IGNORE_PDF_MAKE := yes
+IGNORE_RTF_MAKE := yes
+IGNORE_TXT_MAKE := yes
+IGNORE_XML_MAKE := yes
+endif
+
+ifdef MM_SRC
+IGNORE_MM_MAKE ?= no
+else
+IGNORE_MM_MAKE := yes
+endif
+
+
+# Grouping targets
+all:
+ifeq ($(IGNORE_HTML_MAKE),no)
+	$(MAKE) html
+	$(MAKE) html-arch
+endif
+ifeq ($(IGNORE_HTML-CHUNK_MAKE),no)
+	$(MAKE) html-chunk
+	$(MAKE) html-chunk-arch
+endif
+ifeq ($(IGNORE_CHM_MAKE),no)
+	$(MAKE) chm
+	-$(MAKE) chm-arch
+endif
+ifeq ($(IGNORE_PDF_MAKE),no)
+	$(MAKE) pdf
+	-$(MAKE) pdf-arch
+endif
+ifeq ($(IGNORE_RTF_MAKE),no)
+	$(MAKE) rtf
+	-$(MAKE) rtf-arch
+endif
+ifeq ($(IGNORE_TXT_MAKE),no)
+	$(MAKE) txt
+	$(MAKE) txt-arch
+endif
+ifeq ($(IGNORE_XML_MAKE),no)
+	$(MAKE) xml-arch
+endif
+ifeq ($(IGNORE_MM_MAKE),no)
+	$(MAKE) mm2html
+endif
+
+
+all-html: html html-chunk
+install: install-html install-html-chunk install-pdf install-ps
+
+# Build targets
+$(VERSION_SOURCE): $(ALL_SOURCE)
+	LASTCHANGE=`perl $(TOOLS_DIR)/bin/doc-lastchange.pl --query version --dir $(XML_SRCDIR)` ; \
+	echo "<!ENTITY doc.revision \"$${LASTCHANGE}\">" \
+	    > $(VERSION_SOURCE).tmp; \
+	LASTCHANGE=`perl $(TOOLS_DIR)/bin/doc-lastchange.pl --query date --dir $(XML_SRCDIR)` ; \
+	echo "<!ENTITY doc.lastchange \"$${LASTCHANGE}\">" \
+	    >> $(VERSION_SOURCE).tmp;
+	@if cmp -s $(VERSION_SOURCE) $(VERSION_SOURCE).tmp; then \
+	  rm $(VERSION_SOURCE).tmp; \
+	  touch $(VERSION_SOURCE); \
+	else \
+	  mv $(VERSION_SOURCE).tmp $(VERSION_SOURCE); \
+	  echo "==== new revsion: ===="; \
+	  cat $(VERSION_SOURCE); \
+	fi
+
+mm2html: $(MM_TARGET1) $(MM_TARGET2) $(MM_TARGET0)
+$(MM_TARGET1): $(MM_SRC)
+	$(XSLTPROC) $(HTML_XSLTPROC_OPTS) --output $@ \
+	  --stringparam freemind_src $(<F) \
+	  --stringparam document_root "$(DOCUMENT_ROOT)" \
+	  $(XSLTPROC_PARAMS) $(STYLE_MM2HTML1) $<
+
+$(MM_TARGET2): $(MM_SRC)
+	$(XSLTPROC) $(HTML_XSLTPROC_OPTS) --output $@ \
+	  --stringparam freemind_src $(<F) \
+	  --stringparam document_root "$(DOCUMENT_ROOT)" \
+	  $(XSLTPROC_PARAMS) $(STYLE_MM2HTML2) $<
+
+$(MM_TARGET0): $(MM_SRC)
+	cp $(MM_SRC) $(MM_TARGET0)
+
+html: $(HTML_TARGET)
+$(HTML_TARGET): $(ALL_SOURCE) $(VERSION_SOURCE_VALID) $(IMAGES)
+	$(MAKE) valid
+	$(ENSURE_XSL)
+	$(XML_CATALOG_DEFINE) $(XSLTPROC) $(HTML_XSLTPROC_OPTS) --output $(HTML_TARGET) \
+	  --stringparam root.filename $(basename $(@F)) \
+	  --stringparam document_root "$(DOCUMENT_ROOT)" \
+	  $(XSLTPROC_PARAMS) $(STYLE_ONECHUNK) $(XML_SOURCE)
+
+# The trailing slash on the xsltproc --output option is essential to
+# output pages into the directory
+html-chunk: $(HTML_CHUNK_TARGET)
+$(HTML_CHUNK_TARGET): $(ALL_SOURCE) $(VERSION_SOURCE_VALID) $(IMAGES)
+	mkdir -p $(HTML_CHUNK_DIR)
+	if [ "x$(HTML_CHUNK_DIR)" != "x." ]; then $(IFIMAGES) mkdir -p $(HTML_CHUNK_DIR)/images $(ENDIF); fi
+	$(ENSURE_XSL)
+	$(XML_CATALOG_DEFINE) $(XSLTPROC) $(HTML_XSLTPROC_OPTS) \
+           --output $(HTML_CHUNK_DIR)/ \
+	   --stringparam document_root "$(DOCUMENT_ROOT)" \
+	   $(XSLTPROC_PARAMS) $(STYLE_CHUNK) $(XML_SOURCE)
+	if [ "x$(HTML_CHUNK_DIR)" != "x." ]; then $(IFIMAGES) cp $(IMAGES) $(HTML_CHUNK_DIR)/images $(ENDIF); fi
+	$(RENDER_OTHERS)
+
+html-arch: $(HTML_ARCH_TARGET)
+$(HTML_ARCH_TARGET): $(HTML_TARGET) $(IMAGES)
+	rm -rf $(HTML_ARCH_BASENAME) && \
+	$(MAKE) install-html INSTALL_SUBDIR=$(HTML_ARCH_BASENAME) && \
+	$(ARCH_CMD) $@ $(HTML_ARCH_BASENAME) && \
+	rm -rf $(HTML_ARCH_BASENAME)
+
+html-chunk-arch: $(HTML_CHUNK_ARCH_TARGET)
+$(HTML_CHUNK_ARCH_TARGET): $(HTML_CHUNK_TARGET) $(IMAGES)
+	rm -rf $(HTML_CHUNK_ARCH_BASENAME) && \
+	$(MAKE) install-html-chunk \
+	  INSTALL_SUBDIR=$(HTML_CHUNK_ARCH_BASENAME) && \
+	$(ARCH_CMD) $@ $(HTML_CHUNK_ARCH_BASENAME) && \
+	rm -rf $(HTML_CHUNK_ARCH_BASENAME)
+
+fo: $(FO_TARGET)
+$(FO_TARGET): $(ALL_SOURCE) $(VERSION_SOURCE_VALID) $(IMAGES)
+	$(ENSURE_XSL)
+	$(XML_CATALOG_DEFINE) $(XSLTPROC) $(FO_XSLTPROC_OPTS) --output $(FO_TARGET) \
+	  --stringparam document_root "$(DOCUMENT_ROOT)" \
+	  $(XSLTPROC_PARAMS) $(STYLE_FO) $(XML_SOURCE)
+
+pdf: $(PDF_TARGET)
+$(PDF_TARGET): $(FO_TARGET) $(IMAGES)
+	$(XML_CATALOG_DEFINE) $(TOOLS_DIR)/bin/run-fop.sh -fo $(FO_TARGET) -pdf $(PDF_TARGET)
+
+pdf-arch: $(PDF_ARCH_TARGET)
+$(PDF_ARCH_TARGET): $(PDF_TARGET)
+	$(ARCH_CMD) $@ $^
+
+ps: $(PS_TARGET)
+$(PS_TARGET): $(FO_TARGET) $(IMAGES)
+	$(TOOLS_DIR)/bin/run-fop.sh -fo $(FO_TARGET) -ps $(PS_TARGET)
+
+rtf: $(RTF_TARGET)
+$(RTF_TARGET): $(ALL_SOURCE) $(VERSION_SOURCE_VALID)
+	cd $(@D); \
+		SP_ENCODING=`head -1 $(XML_SOURCE) | grep "<?xml.\+encoding=" | sed -e "s/^<?xml.\+encoding=[\"']\?\([^?\"'[:space:]]*\?\)[\"']\?.*/\1/"`  \
+		SP_CHARSET_FIXED=1 \
+		$(OPENJADE) -c $(SGML_CATALOG_FILES) \
+		-d $(TOOLS_DIR)/sgml/stylesheet/dsssl/ldp/ldp.dsl#print -i print \
+		-E0 -i charset.$${SP_ENCODING} -t rtf -o $(@F) $(XML_DECL) $(XML_SOURCE)
+
+chm: $(CHM_TARGET)
+$(CHM_TARGET): $(ALL_SOURCE) $(VERSION_SOURCE_VALID) $(IMAGES)
+	$(ENSURE_XSL)
+	if $(TOOLS_DIR)/bin/run-hhc.sh --check; then \
+	    $(XML_CATALOG_DEFINE) $(XSLTPROC) $(HTML_XSLTPROC_OPTS) --output $(@D) \
+	        --stringparam document_root "$(DOCUMENT_ROOT)" \
+	        $(XSLTPROC_PARAMS) $(STYLE_HTMLHELP) $(XML_SOURCE); \
+	    @cd $(@D); \
+	    if echo "$(DOCUMENT_ROOT)" | grep -q "^/" ; then \
+	        tmpfile=`mktemp OSSXPCHMTMP.XXXXXX`; rm $${tmpfile}; \
+	        ln -sf $(DOCUMENT_ROOT) ../$${tmpfile} ; \
+	        sed -i -e "s:^$(DOCUMENT_ROOT):../$${tmpfile}/:g" htmlhelp.hhp ; \
+	    fi ; \
+	    cd $(@D); $(TOOLS_DIR)/bin/run-hhc.sh htmlhelp.hhp ; \
+	    cd $(@D); rm -f *-hhfile.htm ../OSSXPCHMTMP.* 2>/dev/null || true ; \
+	    mv htmlhelp.chm $(@F) ; \
+	fi
+
+txt: $(TXT_TARGET)
+$(TXT_TARGET): $(HTML_TARGET)
+	$(LYNX) $< > $@
+
+rtf-arch: $(RTF_ARCH_TARGET)
+$(RTF_ARCH_TARGET): $(RTF_TARGET) $(IMAGES)
+	$(ARCH_CMD) $@ $^
+
+xml-arch: $(XML_ARCH_TARGET)
+$(XML_ARCH_TARGET): $(ALL_SOURCE) $(IMAGES)
+	$(ARCH_CMD) $@ $^
+
+chm-arch: $(CHM_ARCH_TARGET)
+$(CHM_ARCH_TARGET): $(CHM_TARGET)
+	$(ARCH_CMD) $@ $^
+
+txt-arch: $(TXT_ARCH_TARGET)
+$(TXT_ARCH_TARGET): $(TXT_TARGET)
+	$(ARCH_CMD) $@ $^
+
+# Install targets
+$(INSTALL_SUBDIR):
+	$(MKDIR) $(INSTALL_SUBDIR)
+
+install-html: $(HTML_TARGET) $(INSTALL_SUBDIR)
+	$(IFIMAGES) $(MKDIR) $(INSTALL_SUBDIR)/images $(ENDIF)
+	$(INSTALL_DATA) $(HTML_TARGET) $(INSTALL_SUBDIR)
+	$(IFIMAGES) $(INSTALL_IMG1) $(IMAGES) | $(INSTALL_IMG2) $(INSTALL_SUBDIR)/ $(ENDIF)
+	$(INSTALL_OTHERS)
+
+install-html-chunk: $(HTML_CHUNK_TARGET) $(INSTALL_SUBDIR)
+	$(IFIMAGES) $(MKDIR) $(INSTALL_SUBDIR)/images $(ENDIF)
+	$(INSTALL_DATA) $(HTML_CHUNK_DIR)/*.html $(INSTALL_SUBDIR)
+	$(IFIMAGES) $(INSTALL_IMG1) $(IMAGES) | $(INSTALL_IMG2) $(INSTALL_SUBDIR)/ $(ENDIF)
+	$(INSTALL_OTHERS)
+
+install-html-arch: $(HTML_ARCH_TARGET) $(INSTALL_SUBDIR)
+	$(INSTALL_DATA) $(HTML_ARCH_TARGET) $(INSTALL_SUBDIR)
+
+install-html-chunk-arch: $(HTML_CHUNK_ARCH_TARGET) $(INSTALL_SUBDIR)
+	$(INSTALL_DATA) $(HTML_CHUNK_ARCH_TARGET) $(INSTALL_SUBDIR)
+
+install-pdf: $(PDF_TARGET) $(INSTALL_SUBDIR)
+	$(INSTALL_DATA) $(PDF_TARGET) $(INSTALL_SUBDIR)
+
+install-ps: $(PS_TARGET) $(INSTALL_SUBDIR)
+	$(INSTALL_DATA) $(PS_TARGET) $(INSTALL_SUBDIR)
+
+install-rtf: $(RTF_TARGET) $(INSTALL_SUBDIR)
+	$(IFIMAGES) $(MKDIR) $(INSTALL_SUBDIR)/images $(ENDIF)
+	$(INSTALL_DATA) $(RTF_TARGET) $(INSTALL_SUBDIR)
+	$(IFIMAGES) $(INSTALL_IMG1) $(IMAGES) | $(INSTALL_IMG2) $(INSTALL_SUBDIR)/ $(ENDIF)
+	$(INSTALL_OTHERS)
+
+# Clean targets
+clean:
+	rm -f $(VERSION_SOURCE) $(HTML_TARGET) $(MM_TARGET1) $(MM_TARGET2)
+	rm -f $(HTML_ARCH_TARGET) $(HTML_CHUNK_ARCH_TARGET)
+	rm -f $(FO_TARGET) $(PDF_TARGET) $(PS_TARGET) $(CHM_TARGET) $(RTF_TARGET) $(TXT_TARGET)
+	rm -f $(CHM_ARCH_TARGET) $(PDF_ARCH_TARGET) $(RTF_ARCH_TARGET) $(TXT_ARCH_TARGET) $(XML_ARCH_TARGET)
+	rm -f $(HTML_CHUNK_DIR)/*.html
+	rm -f *.hhp *.hhc *.hhk
+
+# Utility targets
+test: valid
+valid: $(VERSION_SOURCE_VALID) $(XML_SOURCE)
+	$(XML_CATALOG_DEFINE) $(XMLLINT)  --noout --nonet --valid $(XML_SOURCE)
+
+############################################################
+# End of Makefile
+############################################################

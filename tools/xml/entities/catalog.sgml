@@ -1,0 +1,126 @@
+
+OVERRIDE YES
+
+  -- ...................................................................... --
+  -- ISO entity sets ...................................................... --
+
+PUBLIC "ISO 8879:1986//ENTITIES Diacritical Marks//EN"
+       "sgml/iso-dia.gml"
+
+PUBLIC "ISO 8879:1986//ENTITIES Numeric and Special Graphic//EN"
+       "sgml/iso-num.gml"
+
+PUBLIC "ISO 8879:1986//ENTITIES Publishing//EN"
+       "sgml/iso-pub.gml"
+
+PUBLIC "ISO 8879:1986//ENTITIES General Technical//EN"
+       "sgml/iso-tech.gml"
+
+PUBLIC "ISO 8879:1986//ENTITIES Added Latin 1//EN"
+       "sgml/iso-lat1.gml"
+
+PUBLIC "ISO 8879:1986//ENTITIES Added Latin 2//EN"
+       "sgml/iso-lat2.gml"
+
+PUBLIC "ISO 8879:1986//ENTITIES Greek Letters//EN"
+       "sgml/iso-grk1.gml"
+
+PUBLIC "ISO 8879:1986//ENTITIES Monotoniko Greek//EN"
+       "sgml/iso-grk2.gml"
+
+PUBLIC "ISO 8879:1986//ENTITIES Greek Symbols//EN"
+       "sgml/iso-grk3.gml"
+
+PUBLIC "ISO 8879:1986//ENTITIES Alternative Greek Symbols//EN"
+       "sgml/iso-grk4.gml"
+
+PUBLIC "ISO 8879:1986//ENTITIES Added Math Symbols: Arrow Relations//EN"
+       "sgml/iso-amsa.gml"
+
+PUBLIC "ISO 8879:1986//ENTITIES Added Math Symbols: Binary Operators//EN"
+       "sgml/iso-amsb.gml"
+
+PUBLIC "ISO 8879:1986//ENTITIES Added Math Symbols: Delimiters//EN"
+       "sgml/iso-amsc.gml"
+
+PUBLIC "ISO 8879:1986//ENTITIES Added Math Symbols: Negated Relations//EN"
+       "sgml/iso-amsn.gml"
+
+PUBLIC "ISO 8879:1986//ENTITIES Added Math Symbols: Ordinary//EN"
+       "sgml/iso-amso.gml"
+
+PUBLIC "ISO 8879:1986//ENTITIES Added Math Symbols: Relations//EN"
+       "sgml/iso-amsr.gml"
+
+PUBLIC "ISO 8879:1986//ENTITIES Box and Line Drawing//EN"
+       "sgml/iso-box.gml"
+
+PUBLIC "ISO 8879:1986//ENTITIES Russian Cyrillic//EN"
+       "sgml/iso-cyr1.gml"
+
+PUBLIC "ISO 8879:1986//ENTITIES Non-Russian Cyrillic//EN"
+       "sgml/iso-cyr2.gml"
+
+
+  -- ...................................................................... --
+  -- ISO entity sets ...................................................... --
+
+PUBLIC "ISO 8879:1986//ENTITIES Diacritical Marks//EN//XML"
+       "xml/iso-dia.ent"
+
+PUBLIC "ISO 8879:1986//ENTITIES Numeric and Special Graphic//EN//XML"
+       "xml/iso-num.ent"
+
+PUBLIC "ISO 8879:1986//ENTITIES Publishing//EN//XML"
+       "xml/iso-pub.ent"
+
+PUBLIC "ISO 8879:1986//ENTITIES General Technical//EN//XML"
+       "xml/iso-tech.ent"
+
+PUBLIC "ISO 8879:1986//ENTITIES Added Latin 1//EN//XML"
+       "xml/iso-lat1.ent"
+
+PUBLIC "ISO 8879:1986//ENTITIES Added Latin 2//EN//XML"
+       "xml/iso-lat2.ent"
+
+PUBLIC "ISO 8879:1986//ENTITIES Greek Letters//EN//XML"
+       "xml/iso-grk1.ent"
+
+PUBLIC "ISO 8879:1986//ENTITIES Monotoniko Greek//EN//XML"
+       "xml/iso-grk2.ent"
+
+PUBLIC "ISO 8879:1986//ENTITIES Greek Symbols//EN//XML"
+       "xml/iso-grk3.ent"
+
+PUBLIC "ISO 8879:1986//ENTITIES Alternative Greek Symbols//EN//XML"
+       "xml/iso-grk4.ent"
+
+PUBLIC "ISO 8879:1986//ENTITIES Added Math Symbols: Arrow Relations//EN//XML"
+       "xml/iso-amsa.ent"
+
+PUBLIC "ISO 8879:1986//ENTITIES Added Math Symbols: Binary Operators//EN//XML"
+       "xml/iso-amsb.ent"
+
+PUBLIC "ISO 8879:1986//ENTITIES Added Math Symbols: Delimiters//EN//XML"
+       "xml/iso-amsc.ent"
+
+PUBLIC "ISO 8879:1986//ENTITIES Added Math Symbols: Negated Relations//EN//XML"
+       "xml/iso-amsn.ent"
+
+PUBLIC "ISO 8879:1986//ENTITIES Added Math Symbols: Ordinary//EN//XML"
+       "xml/iso-amso.ent"
+
+PUBLIC "ISO 8879:1986//ENTITIES Added Math Symbols: Relations//EN//XML"
+       "xml/iso-amsr.ent"
+
+PUBLIC "ISO 8879:1986//ENTITIES Box and Line Drawing//EN//XML"
+       "xml/iso-box.ent"
+
+PUBLIC "ISO 8879:1986//ENTITIES Russian Cyrillic//EN//XML"
+       "xml/iso-cyr1.ent"
+
+PUBLIC "ISO 8879:1986//ENTITIES Non-Russian Cyrillic//EN//XML"
+       "xml/iso-cyr2.ent"
+
+  -- End of catalog data for DocBook V4.5CR1 ................................. --
+  -- ...................................................................... --

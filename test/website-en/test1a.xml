@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE webpage PUBLIC "-//Norman Walsh//DTD Website Full V2.6//EN"
+        "http://docbook.sourceforge.net/release/website/current/schema/dtd/website.dtd" [
+<!ENTITY blah "<para>blah blah blah blah blah blah blah blah blah blah blah blah blah 
+blah blah blah blah blah blah blah blah blah blah blah blah blah 
+blah blah blah blah blah blah blah blah blah blah blah blah blah 
+blah blah blah blah blah blah blah blah blah blah blah blah blah 
+blah blah blah blah blah blah blah blah blah blah blah blah blah 
+blah blah blah blah blah blah blah blah blah blah blah blah blah 
+</para>">
+]>
+<webpage id="test1a">
+<config param="rcsdate" value="$Date: 2003/01/16 15:05:46 $"/>
+<head>
+<title>Test 1a</title>
+<summary>Test 1a Page</summary>
+</head>
+<para>This is just a test page.</para>
+
+<para>But it contains a broken inlinegraphic:
+<ulink url="foo.com"><inlinemediaobject>
+<imageobject>
+<imagedata fileref="foo.jpg"/>
+</imageobject>
+<textobject><phrase>A broken graphic</phrase></textobject>
+</inlinemediaobject></ulink>.
+</para>
+
+<section><title>Test Section</title>
+
+&blah;
+&blah;
+&blah;
+&blah;
+&blah;
+&blah;
+&blah;
+
+<section id="xxx"><title>Another test section</title>
+
+&blah;
+&blah;
+&blah;
+&blah;
+&blah;
+&blah;
+
+</section>
+</section>
+
+</webpage>
+

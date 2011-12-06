@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE webpage PUBLIC "-//Norman Walsh//DTD Website Full V2.6//EN"
+        "http://docbook.sourceforge.net/release/website/current/schema/dtd/website.dtd" [
+<!ENTITY bookmarks SYSTEM "bookmark/bookmark.xml" NDATA SGML>
+]>
+<webpage id="test3">
+<config param="rcsdate" value="$Date: 2003/01/16 15:05:46 $"/>
+<head>
+<title>XBEL Bookmarks</title>
+<summary>XBEL Bookmark test</summary>
+</head>
+<para>This test page demonstrates how to incorporate XBEL bookmarks into
+your web pages. Use an xlink as follows:
+</para>
+
+<programlisting
+><![CDATA[<olink targetdocent="bookmark-entity" type="embed"/>]]></programlisting>
+
+<para>
+<olink targetdocent="bookmarks" type="embed"/>
+</para>
+
+</webpage>
+

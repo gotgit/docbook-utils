@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+
+<!--  XML Catalog file for Whodo project DocBook XSL Stylesheets distribution -->
+
+  <rewriteURI uriStartString="http://www.worldhello.net/docbook/xsl/current/" rewritePrefix="./"/>
+  <rewriteSystem systemIdStartString="http://www.worldhello.net/docbook/xsl/current/" rewritePrefix="./"/>
+
+  <rewriteURI uriStartString="http://www.worldhello.net/docbook/schema/current/" rewritePrefix="schema/"/>
+  <rewriteSystem systemIdStartString="http://www.worldhello.net/docbook/schema/current/" rewritePrefix="schema/"/>
+
+</catalog>

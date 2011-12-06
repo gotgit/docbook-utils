@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE webpage PUBLIC "-//Norman Walsh//DTD Website Full V2.6//EN"
+        "http://docbook.sourceforge.net/release/website/current/schema/dtd/website.dtd">
+<webpage id="test1" lang="de">
+<config param="rcsdate" value="$Date: 2003/01/16 15:05:46 $"/>
+<head>
+<title>Test <emphasis>1</emphasis></title>
+<summary>Test 1 Page</summary>
+</head>
+<para>This is just a test page.</para>
+<webtoc/>
+
+</webpage>
+

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE webpage PUBLIC "-//Norman Walsh//DTD Website Full V2.6//EN"
+        "http://docbook.sourceforge.net/release/website/current/schema/dtd/website.dtd">
+<webpage id="php">
+<config param="rcsdate" value="$Date: 2003/01/16 15:05:46 $"/>
+<head>
+<title>PHP</title>
+<summary>PHP</summary>
+</head>
+
+<para>The Website stylesheets pass <quote>PHP</quote> processing
+instructions through unchanged, allowing a website with dynamic
+content to be maintained in Website.</para>
+
+<?php foo bar baz?>
+
+</webpage>
+

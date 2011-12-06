@@ -1,0 +1,209 @@
+2005-04-18  Michael Smith <xmldoc@users.sourceforge.net>
+
+	* Makefile-example.txt: more realclean targets
+
+2005-04-08  Michael Smith <xmldoc@users.sourceforge.net>
+
+	* Makefile, Makefile-example.txt: Renamed original Makefile to Makefile-example.txt so that it will
+	get included in the release package correctly. Also added support
+	for a new depends-file param, when helps to get "clean" targe in
+	depends.* files set up correctly. Also make change to suppress
+	warnings about depends.* files being missing.
+
+	* build-make.xml, build-nontab.xml, build-textonly.xml, build.xml, full.xml, layout.xml, olink.xml, website.xml: 
+	Added notes about Makefile-example.txt and about RNC versions of
+	schemas; Changed references to "text only" to "non tabular" for
+	more clarity, and renamed build-textonly.xml to build-nontab.xml
+
+2005-04-06  Michael Smith <xmldoc@users.sourceforge.net>
+
+	* Makefile: xmllint is now used for validation if XSLT=xsltproc
+
+2005-04-04  Michael Smith <xmldoc@users.sourceforge.net>
+
+	* .cvsignore: ignore stuff
+
+2005-04-02  Michael Smith <xmldoc@users.sourceforge.net>
+
+	* Makefile: made stylesheet path to be based on canonical URI for current
+	Website distro; also added option for using xsltproc and xmllint
+	instead of saxon and xerces
+
+	* layout.xml, website.xml, wslayout.xml: NOTATION declaration for "XML" removed (already in latest website.dtd)
+
+2005-04-01  Michael Smith <xmldoc@users.sourceforge.net>
+
+	* Makefile: cvstools/Makefile, include instead of hard-coding application
+	names; "depends.tabular" and "depends.textonly", switched to
+	instead of .tabular and .textonly names, to match names in
+	../website/xsl/makefile-dep.xsl; "realclean" target added (to
+	remove depends)
+
+2005-03-29  Robert Stayton <bobstayton@users.sourceforge.net>
+
+	* Makefile: Add processing of olink target database.
+
+	* example.css: Turn off toc list for print output.
+
+	* olink.xml: Fixed olink targetdoc for link to XSLT build method.
+
+2003-12-19  Norman Walsh <nwalsh@users.sourceforge.net>
+
+	* build-make.xml: Patch #782320: Improved Makefile example from Oliver Fischer
+
+2003-10-02  Robert Stayton <bobstayton@users.sourceforge.net>
+
+	* olink.xml: Added info on linking to other content and other sites.
+
+2003-02-20  Robert Stayton <bobstayton@users.sourceforge.net>
+
+	* olink.xml: Now covers XSL-based olink processing.
+
+2003-02-18  Norman Walsh <nwalsh@users.sourceforge.net>
+
+	* layout.xml: Moved revisionflag
+
+2003-01-25  Norman Walsh <nwalsh@users.sourceforge.net>
+
+	* catalog.xml: New file.
+
+2003-01-24  Norman Walsh <nwalsh@users.sourceforge.net>
+
+	* Makefile: Use Saxon instead of xsltproc because the warnings about realtive namespace URIs bug me
+
+2003-01-16  Norman Walsh <nwalsh@users.sourceforge.net>
+
+	* about.xml, build-ext.xml, build-make.xml, build-textonly.xml, building.xml, custom.xml, full.xml, layout.xml, olink.xml, param.xml, php.xml, rddl.xml, revflag.xml, rss.xml, test1.xml, test1a.xml, test1b.xml, test2.xml, test3.xml, website.xml, wslayout.xml: 
+	Updated DTD URIs
+
+2003-01-12  Robert Stayton <bobstayton@users.sourceforge.net>
+
+	* build-ext.xml: Added para about using a processor that lacks extension
+	functions.
+
+	* build-make.xml: Corrections to Makefile listing.
+
+2002-10-02  Norman Walsh <nwalsh@users.sourceforge.net>
+
+	* build-make.xml, layout.xml: Add global headlink and local headlink
+
+2002-09-16  Norman Walsh <nwalsh@users.sourceforge.net>
+
+	* Makefile: Make filename-prefix a separate make parameter
+
+	* build-make.xml: Add note about autolayout-file
+
+2002-09-15  Norman Walsh <nwalsh@users.sourceforge.net>
+
+	* full.xml: New file.
+
+	* layout.xml: Added full.xml
+
+2002-09-11  Norman Walsh <nwalsh@users.sourceforge.net>
+
+	* build.xml: New file.
+
+	* layout.xml, rss.xml, test1.xml: Add RSS example
+
+2002-05-24  Norman Walsh <nwalsh@users.sourceforge.net>
+
+	* example.css: Make the navigation bar prettier
+
+	* layout.xml: Fixed doctype line
+
+	* layout.xml, revflag.xml, wslayout.xml: Updates
+
+	* revflag.xml: Added meaningless table test
+
+2002-05-23  Norman Walsh <nwalsh@users.sourceforge.net>
+
+	* layout.xml: Added revisionflags
+
+	* test1b.xml: Whitespace
+
+2001-09-26  Norman Walsh <nwalsh@users.sourceforge.net>
+
+	* .cvsignore, Makefile: Convert to xsltproc by default; change the name of the dependency files
+
+	* build-ext.xml: Ooops, important isn't in website
+
+	* layout.xml, php.xml: Added php.xml
+
+2001-09-22  Norman Walsh <nwalsh@users.sourceforge.net>
+
+	* build-ext.xml: Note that xslt can't handle complex dependencies
+
+2001-09-06  Norman Walsh <nwalsh@users.sourceforge.net>
+
+	* .cvsignore, Makefile, about.xml, build-ext.xml, build-make.xml, build-textonly.xml, building.xml, custom.xml, example.css, layout.xml, olink.xml, param.xml, rddl.xml, test1.xml, test1a.xml, test1b.xml, test2.xml, test3.xml, website.xml, wslayout.xml: 
+	Merge V2-branch back onto the trunk; I'm abandoning V1-branch and V2-branch henceforth
+
+2001-08-07  Norman Walsh <nwalsh@users.sourceforge.net>
+
+	* layout.xml: Added link to external page nwalsh.com
+
+2001-07-29  Norman Walsh <nwalsh@users.sourceforge.net>
+
+	* olink.xml: Expand sf.net to sourceforge.net; too many DNS hickups for sf.net
+
+	* test2.xml: Add xmlns for html
+
+2001-06-17  Norman Walsh <nwalsh@users.sourceforge.net>
+
+	* layout.xml, rddl.xml: Add support for RDDL
+
+	* rddl.xml: branches:  1.1.2;
+	file rddl.xml was initially added on branch V2-branch.
+
+2001-06-14  Norman Walsh <nwalsh@users.sourceforge.net>
+
+	* Makefile: Make it possible to build using either style
+
+	* wslayout.xml: Fixed typo
+
+2001-06-04  Norman Walsh <nwalsh@users.sourceforge.net>
+
+	* Makefile, build-ext.xml, build-make.xml, build-textonly.xml, building.xml, custom.xml, example.css, layout.xml, olink.xml, test1a.xml, test3.xml, website.xml, wslayout.xml: 
+	Updated to document the new Website setup
+
+	* build-ext.xml: branches:  1.1.2;
+	file build-ext.xml was initially added on branch V2-branch.
+
+	* build-make.xml: branches:  1.1.2;
+	file build-make.xml was initially added on branch V2-branch.
+
+	* build-textonly.xml: branches:  1.1.2;
+	file build-textonly.xml was initially added on branch V2-branch.
+
+	* building.xml: branches:  1.1.2;
+	file building.xml was initially added on branch V2-branch.
+
+	* olink.xml: branches:  1.1.2;
+	file olink.xml was initially added on branch V2-branch.
+
+2001-04-15  Norman Walsh <nwalsh@users.sourceforge.net>
+
+	* .cvsignore: branches:  1.1.2;
+	file .cvsignore was initially added on branch V2-branch.
+
+	* .cvsignore, Makefile, about.xml, custom.xml, example.css, layout.xml, param.xml, test1.xml, test1a.xml, test1b.xml, test2.xml, test3.xml, website.xml, wslayout.xml: 
+	New file.
+
+	* Makefile, about.xml, example.css, test1.xml, test1a.xml, test1b.xml, test2.xml, test3.xml, website.xml: 
+	branches:  1.1.4;
+	Initial checkin of V1.10 sources
+
+	* custom.xml: branches:  1.1.2;
+	file custom.xml was initially added on branch V2-branch.
+
+	* dynxbel.js: New file.
+
+	* layout.xml: branches:  1.1.2;
+	file layout.xml was initially added on branch V2-branch.
+
+	* param.xml: branches:  1.1.2;
+	file param.xml was initially added on branch V2-branch.
+
+	* wslayout.xml: branches:  1.1.2;
+	file wslayout.xml was initially added on branch V2-branch.
+

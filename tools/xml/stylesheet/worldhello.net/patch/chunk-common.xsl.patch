@@ -1,0 +1,23 @@
+diff -u -r docbook-xsl-1.69.1/html/chunk-common.xsl docbook-xsl/html/chunk-common.xsl
+--- docbook-xsl-1.69.1/html/chunk-common.xsl	2005-12-19 23:33:37.000000000 +0800
++++ docbook-xsl/html/chunk-common.xsl	2005-12-26 11:06:37.687500000 +0800
+@@ -184,6 +184,11 @@
+ 
+ <xsl:template match="*" mode="recursive-chunk-filename">
+   <xsl:param name="recursive" select="false()"/>
++  <xsl:param name="osx.html.prefix.add" select="false()"/>
++
++  <xsl:if test="not($recursive) and not($osx.html.prefix.add) and $osx.html.prefix != ''">
++    <xsl:value-of select="$osx.html.prefix"/>
++  </xsl:if>
+ 
+   <!-- returns the filename of a chunk -->
+   <xsl:variable name="ischunk">
+@@ -228,6 +233,7 @@
+         <xsl:when test="count(parent::*)>0">
+           <xsl:apply-templates mode="recursive-chunk-filename" select="parent::*">
+             <xsl:with-param name="recursive" select="$recursive"/>
++            <xsl:with-param name="osx.html.prefix.add" select="true()"/>
+           </xsl:apply-templates>
+         </xsl:when>
+         <!-- unless there is no up, in which case return "" -->

@@ -1,0 +1,67 @@
+<?xml version='1.0'?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+
+<!-- ...................................................................... -->
+<!-- ISO entity sets ...................................................... -->
+
+<public publicId="ISO 8879:1986//ENTITIES Diacritical Marks//EN//XML"
+        uri="xml/iso-dia.ent"/>
+
+<public publicId="ISO 8879:1986//ENTITIES Numeric and Special Graphic//EN//XML"
+        uri="xml/iso-num.ent"/>
+
+<public publicId="ISO 8879:1986//ENTITIES Publishing//EN//XML"
+        uri="xml/iso-pub.ent"/>
+
+<public publicId="ISO 8879:1986//ENTITIES General Technical//EN//XML"
+        uri="xml/iso-tech.ent"/>
+
+<public publicId="ISO 8879:1986//ENTITIES Added Latin 1//EN//XML"
+        uri="xml/iso-lat1.ent"/>
+
+<public publicId="ISO 8879:1986//ENTITIES Added Latin 2//EN//XML"
+        uri="xml/iso-lat2.ent"/>
+
+<public publicId="ISO 8879:1986//ENTITIES Greek Letters//EN//XML"
+        uri="xml/iso-grk1.ent"/>
+
+<public publicId="ISO 8879:1986//ENTITIES Monotoniko Greek//EN//XML"
+        uri="xml/iso-grk2.ent"/>
+
+<public publicId="ISO 8879:1986//ENTITIES Greek Symbols//EN//XML"
+        uri="xml/iso-grk3.ent"/>
+
+<public publicId="ISO 8879:1986//ENTITIES Alternative Greek Symbols//EN//XML"
+        uri="xml/iso-grk4.ent"/>
+
+<public publicId="ISO 8879:1986//ENTITIES Added Math Symbols: Arrow Relations//EN//XML"
+        uri="xml/iso-amsa.ent"/>
+
+<public publicId="ISO 8879:1986//ENTITIES Added Math Symbols: Binary Operators//EN//XML"
+        uri="xml/iso-amsb.ent"/>
+
+<public publicId="ISO 8879:1986//ENTITIES Added Math Symbols: Delimiters//EN//XML"
+        uri="xml/iso-amsc.ent"/>
+
+<public publicId="ISO 8879:1986//ENTITIES Added Math Symbols: Negated Relations//EN//XML"
+        uri="xml/iso-amsn.ent"/>
+
+<public publicId="ISO 8879:1986//ENTITIES Added Math Symbols: Ordinary//EN//XML"
+        uri="xml/iso-amso.ent"/>
+
+<public publicId="ISO 8879:1986//ENTITIES Added Math Symbols: Relations//EN//XML"
+        uri="xml/iso-amsr.ent"/>
+
+<public publicId="ISO 8879:1986//ENTITIES Box and Line Drawing//EN//XML"
+        uri="xml/iso-box.ent"/>
+
+<public publicId="ISO 8879:1986//ENTITIES Russian Cyrillic//EN//XML"
+        uri="xml/iso-cyr1.ent"/>
+
+<public publicId="ISO 8879:1986//ENTITIES Non-Russian Cyrillic//EN//XML"
+        uri="xml/iso-cyr2.ent"/>
+
+<!-- End of catalog data for DocBook XML V4.5CR1 ............................. -->
+<!-- ...................................................................... -->
+
+</catalog>

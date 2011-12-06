@@ -1,0 +1,17 @@
+-- ...................................................................... --
+--                "export SGML_CATALOG_FILES=/PATH/catalog"               --
+OVERRIDE YES
+
+SGMLDECL "docbook-4.5/docbook.dcl"
+
+CATALOG "docbook-4.5/docbook.cat"
+
+PUBLIC "-//OASIS//DTD DocBook V3.1//EN"       "docbook-4.5/docbook.dtd"
+PUBLIC "-//OASIS//DTD DocBook V4.2//EN"       "docbook-4.5/docbook.dtd"
+PUBLIC "-//OASIS//DTD DocBook V4.5//EN"       "docbook-4.5/docbook.dtd"
+PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN"   "docbook-4.5/docbookx.dtd"
+PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"   "docbook-4.5/docbookx.dtd"
+
+-- DOCTYPE book         docbook-4.5/docbook.dtd --
+-- DOCTYPE article      docbook-4.5/docbook.dtd --
+-- DOCTYPE chapter      docbook-4.5/docbook.dtd --
